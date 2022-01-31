@@ -1,6 +1,6 @@
 {
 	"name": "@sayunj/quill-image-resize-fix-for-mobile",
-	"version": "4.0.2",
+	"version": "4.0.3",
 	"description": "A module for Quill rich text editor to allow images to be resized. fixed for mobile",
 	"main": "image-resize.min.js",
 	"scripts": {
