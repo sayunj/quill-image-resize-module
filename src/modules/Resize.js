@@ -53,7 +53,6 @@ export class Resize extends BaseModule {
 		// listen for mousedown on each box
 		box.addEventListener("mousedown", this.handleMousedown, false);
 		box.addEventListener("touchstart", this.handleMousedown, false);
-
 		// add drag handle to document
 		this.overlay.appendChild(box);
 		// keep track of drag handle
@@ -64,21 +63,20 @@ export class Resize extends BaseModule {
 		// note which box
 		this.dragBox = evt.target;
 		// note starting mousedown position
-
+		// this.dragStartX = evt.clientX;
 		if (evt.touches) {
 			// for mobile devices get clientX of first touch point
 			this.dragStartX = evt.touches[0].clientX;
 		} else {
 			this.dragStartX = evt.clientX;
 		}
-
+		// store the width before the drag
 		this.preDragWidth = this.img.width || this.img.naturalWidth;
 		// set the proper cursor everywhere
 		this.setCursor(this.dragBox.style.cursor);
 		// listen for movement and mouseup
-
-		document.removeEventListener("touchend", this.handleMouseup);
-		document.removeEventListener("touchmove", this.handleDrag);
+		document.addEventListener("touchend", this.handleMouseup);
+		document.addEventListener("touchmove", this.handleDrag);
 		document.addEventListener("mousemove", this.handleDrag, false);
 		document.addEventListener("mouseup", this.handleMouseup, false);
 	};
@@ -99,6 +97,8 @@ export class Resize extends BaseModule {
 			return;
 		}
 		// update image size
+		// const deltaX = evt.clientX - this.dragStartX;
+		let deltaX;
 		if (evt.touches) {
 			deltaX = evt.touches[0].clientX - this.dragStartX;
 		} else {
