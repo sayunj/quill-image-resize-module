@@ -77,8 +77,8 @@ export class Resize extends BaseModule {
 		this.setCursor(this.dragBox.style.cursor);
 		// listen for movement and mouseup
 
-		document.addEventListener("touchend", this.handleMouseup, false);
-		document.addEventListener("touchmove", this.handleDrag, false);
+		document.removeEventListener("touchend", this.handleMouseup);
+		document.removeEventListener("touchmove", this.handleDrag);
 		document.addEventListener("mousemove", this.handleDrag, false);
 		document.addEventListener("mouseup", this.handleMouseup, false);
 	};
